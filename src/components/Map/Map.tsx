@@ -1,6 +1,6 @@
 import React from 'react';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { TileLayer, Marker, Popup } from 'react-leaflet';
 import { Place } from '../../types/Place';
 import pin from '../../assets/icons/pin.png';
 import { Icon } from 'leaflet';
