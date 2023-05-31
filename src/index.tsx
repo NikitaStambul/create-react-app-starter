@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './components/App/App';
+import { MapContainer } from 'react-leaflet';
 
 
 const root = ReactDOM.createRoot(
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <MapContainer center={[50, 15]} zoom={5}>
+      <App />
+    </MapContainer>
   </React.StrictMode>,
 );
