@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styles from './App.module.scss';
 import 'leaflet/dist/leaflet.css';
 import { AddPlaceButton } from '../AddPlaceButton';
 import { Crosshair } from '../Crosshair';
