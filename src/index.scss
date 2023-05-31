@@ -1,0 +1,10 @@
+@import './styles/reset.scss';
+@import './styles/normalize.scss';
+
+#root {
+  height: 100dvh;
+}
+
+.leaflet-container {
+  height: 100dvh;
+}

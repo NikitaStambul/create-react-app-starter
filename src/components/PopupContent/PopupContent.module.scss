@@ -1,0 +1,18 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+
+  width: 150px;
+  max-height: 400px;
+}
+
+.name {
+  max-height: 1.5em;
+  margin-bottom: 8px;
+}
+
+.description {
+  max-height: 6em;
+  overflow: auto;
+  margin: 0;
+}
