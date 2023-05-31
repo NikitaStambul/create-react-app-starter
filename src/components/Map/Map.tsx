@@ -17,7 +17,7 @@ export const Map = (props: Props) => {
   });
 
   return (
-    <MapContainer center={[50, 15]} zoom={5}>
+    <>
       <TileLayer
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -33,6 +33,6 @@ export const Map = (props: Props) => {
           </Marker>
         );
       })}
-    </MapContainer>
+    </>
   );
 };

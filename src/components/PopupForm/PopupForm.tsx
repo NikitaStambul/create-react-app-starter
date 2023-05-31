@@ -7,6 +7,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   latitude?: string;
   longitude?: string;
   reloadPlaces: () => Promise<void>;
+  handleShadowClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const PopupForm = (props: Props) => {
@@ -15,8 +16,10 @@ export const PopupForm = (props: Props) => {
     longitude = '',
     className,
     reloadPlaces,
+    handleShadowClick,
     ...restProps
   } = props;
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -46,56 +49,73 @@ export const PopupForm = (props: Props) => {
   };
 
   return (
-    <div className={classNames(styles['popup-form'], className)} {...restProps}>
-      <h2>Add new Place</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          placeholder="Please enter name"
-          className={styles.input}
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+    <>
+      <div
+        className={classNames(styles['popup-form'], className)}
+        {...restProps}
+      >
+        <h2>Add new Place</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles['input-container']}>
+            <label htmlFor="name">Name:</label>
+            <input
+              placeholder="Please enter name"
+              className={styles.input}
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label htmlFor="description">Description:</label>
-        <input
-          placeholder="Please enter description"
-          className={styles.input}
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
+          <div className={styles['input-container']}>
+            <label htmlFor="description">Description:</label>
+            <input
+              placeholder="Please enter description"
+              className={styles.input}
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label htmlFor="latitude">Latitude:</label>
-        <input
-          placeholder="Please enter latitude"
-          className={styles.input}
-          type="text"
-          id="latitude"
-          name="latitude"
-          value={formData.latitude}
-          onChange={handleChange}
-        />
+          <div className={styles['input-container']}>
+            <label htmlFor="latitude">Latitude:</label>
+            <input
+              placeholder="Please enter latitude"
+              className={styles.input}
+              type="text"
+              id="latitude"
+              name="latitude"
+              value={formData.latitude}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label htmlFor="longitude">Longitude:</label>
-        <input
-          placeholder="Please enter longitude"
-          className={styles.input}
-          type="text"
-          id="longitude"
-          name="longitude"
-          value={formData.longitude}
-          onChange={handleChange}
-        />
+          <div className={styles['input-container']}>
+            <label htmlFor="longitude">Longitude:</label>
+            <input
+              placeholder="Please enter longitude"
+              className={styles.input}
+              type="text"
+              id="longitude"
+              name="longitude"
+              value={formData.longitude}
+              onChange={handleChange}
+            />
+          </div>
 
-        <button className={styles.submit} type="submit">
-          Add
-        </button>
-      </form>
-    </div>
+          <button className={styles.submit} type="submit">
+            Add
+          </button>
+        </form>
+      </div>
+      <div
+        className={styles['popup-shadow']}
+        onClick={handleShadowClick}
+      />
+    </>
   );
 };

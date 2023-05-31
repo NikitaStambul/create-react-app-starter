@@ -7,9 +7,14 @@ import { PopupForm } from '../PopupForm';
 import { getAllPlaces } from '../../api/places';
 import { Place } from '../../types/Place';
 import { Map } from '../Map';
+import { useMap } from 'react-leaflet';
 
 function App() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  const map = useMap();
+
+  const { lat, lng } = map.getCenter();
+
+  const [isFormVisible, setIsFormVisible] = useState(true);
   const [places, setPlaces] = useState<Place[]>([]);
 
   const getPlaces = async () => {
@@ -27,21 +32,19 @@ function App() {
     setIsFormVisible(true);
   };
 
-  const handleShadowClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    setIsFormVisible(false);
-  };
-
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Map places={places} />
       <AddPlaceButton onClick={handleAddClick} />
       <Crosshair />
       {isFormVisible && (
         <>
-          <PopupForm reloadPlaces={getPlaces} />
-          <div className={styles['popup-shadow']} onClick={handleShadowClick}></div>
+          <PopupForm
+            reloadPlaces={getPlaces}
+            latitude={`${lat}`}
+            longitude={`${lng}`}
+            handleShadowClick={() => setIsFormVisible(false)}
+          />
         </>
       )}
     </div>
