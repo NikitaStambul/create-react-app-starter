@@ -14,7 +14,7 @@ function App() {
 
   const { lat, lng } = map.getCenter();
 
-  const [isFormVisible, setIsFormVisible] = useState(true);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [places, setPlaces] = useState<Place[]>([]);
 
   const getPlaces = async () => {
