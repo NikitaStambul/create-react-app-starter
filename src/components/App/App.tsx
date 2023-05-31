@@ -7,13 +7,9 @@ import { PopupForm } from '../PopupForm';
 import { getAllPlaces } from '../../api/places';
 import { Place } from '../../types/Place';
 import { Map } from '../Map';
-import { useMap } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
 
 function App() {
-  const map = useMap();
-
-  const { lat, lng } = map.getCenter();
-
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [places, setPlaces] = useState<Place[]>([]);
 
@@ -33,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className={styles.app}>
+    <MapContainer center={[50, 15]} zoom={5}>
       <Map places={places} />
       <AddPlaceButton onClick={handleAddClick} />
       <Crosshair />
@@ -41,13 +37,11 @@ function App() {
         <>
           <PopupForm
             reloadPlaces={getPlaces}
-            latitude={`${lat}`}
-            longitude={`${lng}`}
             handleShadowClick={() => setIsFormVisible(false)}
           />
         </>
       )}
-    </div>
+    </MapContainer>
   );
 }
 

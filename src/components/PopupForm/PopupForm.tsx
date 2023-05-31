@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import styles from './PopupForm.module.scss';
 import classNames from 'classnames';
 import { postPlace } from '../../api/places';
+import { useMap } from 'react-leaflet';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  latitude?: string;
-  longitude?: string;
   reloadPlaces: () => Promise<void>;
   handleShadowClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const PopupForm = (props: Props) => {
+  const map = useMap();
+
+  const { lat, lng } = map.getCenter();
+
   const {
-    latitude = '',
-    longitude = '',
     className,
     reloadPlaces,
     handleShadowClick,
@@ -23,8 +24,8 @@ export const PopupForm = (props: Props) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    latitude,
-    longitude,
+    latitude: `${lat}` || '',
+    longitude: `${lng}` || '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
