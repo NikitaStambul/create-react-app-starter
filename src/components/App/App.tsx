@@ -36,7 +36,7 @@ function App() {
         <>
           <PopupForm
             reloadPlaces={getPlaces}
-            handleShadowClick={() => setIsFormVisible(false)}
+            setIsFormVisible={setIsFormVisible}
           />
         </>
       )}

@@ -6,20 +6,14 @@ import { useMap } from 'react-leaflet';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   reloadPlaces: () => Promise<void>;
-  handleShadowClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  setIsFormVisible: (value: React.SetStateAction<boolean>) => void;
 }
 
 export const PopupForm = (props: Props) => {
+  const { className, reloadPlaces, setIsFormVisible, ...restProps } = props;
+
   const map = useMap();
-
   const { lat, lng } = map.getCenter();
-
-  const {
-    className,
-    reloadPlaces,
-    handleShadowClick,
-    ...restProps
-  } = props;
 
   const [formData, setFormData] = useState({
     name: '',
@@ -45,9 +39,19 @@ export const PopupForm = (props: Props) => {
       longitude: '',
     });
 
+    setIsFormVisible(false);
     await postPlace(formData);
     await reloadPlaces();
   };
+
+  const isDisabled =
+    (formData.name.trim() === '' ||
+    Number(formData.latitude) >= 180 ||
+    Number(formData.latitude) <= -180 ||
+    isNaN(Number(formData.latitude)) ||
+    Number(formData.longitude) >= 180 ||
+    Number(formData.longitude) <= -180 ||
+    isNaN(Number(formData.longitude)));
 
   return (
     <>
@@ -108,15 +112,12 @@ export const PopupForm = (props: Props) => {
             />
           </div>
 
-          <button className={styles.submit} type="submit">
+          <button className={styles.submit} type="submit" disabled={isDisabled}>
             Add
           </button>
         </form>
       </div>
-      <div
-        className={styles['popup-shadow']}
-        onClick={handleShadowClick}
-      />
+      <div className={styles['popup-shadow']} onClick={() => setIsFormVisible(false)} />
     </>
   );
 };

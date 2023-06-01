@@ -14,3 +14,7 @@ export function getAllPlaces(): Promise<Response> {
 export function postPlace(place: Omit<Place, 'id'>): Promise<Place> {
   return axios.post(API_URL + 'places', place);
 }
+
+export function deleteById(placeId: string): Promise<Response> {
+  return axios.get(API_URL + `places/${placeId}`);
+}
