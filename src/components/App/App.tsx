@@ -11,6 +11,7 @@ import { MapContainer } from 'react-leaflet';
 function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [places, setPlaces] = useState<Place[]>([]);
+  const [center, setCenter] = useState<number[]>([]);
 
   const getPlaces = async () => {
     const response = await getAllPlaces();
@@ -28,19 +29,20 @@ function App() {
   };
 
   return (
-    <MapContainer center={[50, 15]} zoom={5}>
-      <Map places={places} reload={getPlaces} />
-      <AddPlaceButton onClick={handleAddClick} />
-      <Crosshair />
+    <>
+      <MapContainer center={[50, 15]} zoom={5}>
+        <Map places={places} reload={getPlaces} setCenter={setCenter}/>
+        <AddPlaceButton onClick={handleAddClick} />
+        <Crosshair />
+      </MapContainer>
       {isFormVisible && (
-        <>
-          <PopupForm
-            reloadPlaces={getPlaces}
-            setIsFormVisible={setIsFormVisible}
-          />
-        </>
+        <PopupForm
+          reloadPlaces={getPlaces}
+          setIsFormVisible={setIsFormVisible}
+          center={center}
+        />
       )}
-    </MapContainer>
+    </>
   );
 }
 
