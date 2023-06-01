@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import styles from './PopupForm.module.scss';
 import classNames from 'classnames';
 import { postPlace } from '../../api/places';
-import { useMap } from 'react-leaflet';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   reloadPlaces: () => Promise<void>;
   setIsFormVisible: (value: React.SetStateAction<boolean>) => void;
+  center: number[];
 }
 
 export const PopupForm = (props: Props) => {
-  const { className, reloadPlaces, setIsFormVisible, ...restProps } = props;
-
-  const map = useMap();
-  const { lat, lng } = map.getCenter();
+  const { center, className, reloadPlaces, setIsFormVisible, ...restProps } = props;
+  const [lat, lng] = center;
 
   const [formData, setFormData] = useState({
     name: '',
