@@ -16,5 +16,5 @@ export function postPlace(place: Omit<Place, 'id'>): Promise<Place> {
 }
 
 export function deleteById(placeId: string): Promise<Response> {
-  return axios.get(API_URL + `places/${placeId}`);
+  return axios.delete(API_URL + `places/${placeId}`);
 }
