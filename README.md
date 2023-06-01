@@ -1,35 +1,41 @@
----
-title: Create React App
-description: A default Create React App project, utilizing `serve` to serve the built app
-tags:
-  - node
-  - react
----
 
-# Create React App
+# Geo-App
 
-This is a [Create React App](https://flask.palletsprojects.com/en/1.1.x/) starter that uses [serve](https://www.npmjs.com/package/serve).
+Geo-app is a web application built with React, TypeScript, and Leaflet that allows users to add and view places on a map. It provides an intuitive interface for interacting with geolocation data.
+## Installation
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/6sjhSn?referralCode=ySCnWl)
+Getting Started To run the Geo-App locally, follow the steps below:
 
-## ✨ Features
+Fork the repository on GitHub.
 
-- Create React App
-- Serve
+Clone the forked repository to your local machine.
 
-## 💁‍♀️ How to use
+Open a terminal or command prompt and navigate to the project directory.
 
-- Install required dependencies with `npm install`
-- Start the server for development `npm run dev`
+Run the following command to install the dependencies:
 
-    (The original `start` command has been more appropriately renamed to `dev`)
+```bash
+  npm install
+```
+Once the installation is complete, start the app by running the following command:
+```bash
+  npm run start
+```
+The app should now be running locally and can be accessed in your browser at http://localhost:3000.
+## Demo
 
-## ❓ Why use `serve`
+The Geo-App is currently deployed at railway. You can access the deployed app using this URL.
 
-By default Railway will use the `start` script defined in package.json to run your app, the problem with that for a default create-react-app project is that the start script starts a development server
-not fit to run on railway, for reasons such as:
+[DEMO LINK](https://geo-app.up.railway.app/);
 
- - Starts a file watching development server that's resource intensive
- - Has a tendency for ram to get out of hand (>600mb)
- - Doesn't listen on the railway provided PORT variable
- - Not as stable or performant as `serve`
+
+## Tech Stack
+
+**Client:** React, TypeScript, Leaflet
+
+**Server:** Node, Express, Sequelize
+
+
+## Feedback
+
+If you have any feedback, please reach out to me at mykyta.stambul@gmail.com.
