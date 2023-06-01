@@ -8,6 +8,7 @@ import { PopupContent } from '../PopupContent';
 
 interface Props {
   places: Place[];
+  reload: () => Promise<void>;
 }
 
 export const Map = (props: Props) => {
@@ -28,7 +29,7 @@ export const Map = (props: Props) => {
         return (
           <Marker key={id} position={[+latitude, +longitude]} icon={icon}>
             <Popup>
-              <PopupContent place={place} />
+              <PopupContent place={place} reload={props.reload}/>
             </Popup>
           </Marker>
         );

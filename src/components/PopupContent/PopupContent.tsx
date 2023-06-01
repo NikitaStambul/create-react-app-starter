@@ -6,11 +6,13 @@ import { deleteById } from '../../api/places';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   place: Place;
+  reload: () => Promise<void>;
 }
 
-export const PopupContent = ({ place, className, ...restProps }: Props) => {
+export const PopupContent = ({ place, className, reload, ...restProps }: Props) => {
   const handleDeleteClick = async (id: string) => {
     await deleteById(id);
+    reload();
   }
 
   return (

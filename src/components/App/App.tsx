@@ -29,7 +29,7 @@ function App() {
 
   return (
     <MapContainer center={[50, 15]} zoom={5}>
-      <Map places={places} />
+      <Map places={places} reload={getPlaces} />
       <AddPlaceButton onClick={handleAddClick} />
       <Crosshair />
       {isFormVisible && (
