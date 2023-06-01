@@ -14,7 +14,7 @@
 .description {
   max-height: 6em;
   overflow: auto;
-  margin: 0;
+  margin: 0 0 8px;
 }
 
 .delete {
@@ -24,4 +24,5 @@
   font-size: 14px;
   padding: 4px;
   color: white;
+  cursor: pointer;
 }
